@@ -97,15 +97,18 @@ setTimeout(function() {
 		const memo = dom_content.value
 		const value = {memo: memo}
 		
-		chrome.runtime.sendMessage({method: 'setItem', key: screen_name, value: JSON.stringify(value)}, function () {
+		chrome.storage.local.set({
+			[screen_name]: value,
+		}, function () {
 			alert("メモを更新しました")
 		})
 	}
 	
-	// メモがlocalStorageに保存されていたら読み込む
-	chrome.runtime.sendMessage({method: 'getItem', key: screen_name}, function (response) {
-		if (response.data) {
-			const memo = response.data.memo
+	// メモがstorageに保存されていたら読み込む
+	chrome.storage.local.get(screen_name, function (items) {
+		const data = items[screen_name]
+		if (data) {
+			const memo = data.memo
 			dom_content.value = memo
 		}
 	})

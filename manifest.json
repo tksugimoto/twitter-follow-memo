@@ -8,5 +8,8 @@
 		"scripts": ["js/background.js"],
 		"persistent": false
 	},
-	"permissions": ["https://twitter.com/*"]
+	"permissions": [
+		"storage",
+		"https://twitter.com/*"
+	]
 }
