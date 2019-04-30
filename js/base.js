@@ -97,9 +97,9 @@ setTimeout(function() {
 		const memo = dom_content.value
 		const value = {memo: memo}
 		
-		chrome.runtime.sendMessage({method: 'setItem', key: screen_name, value: JSON.stringify(value)})
-		
-		alert("メモを更新しました")
+		chrome.runtime.sendMessage({method: 'setItem', key: screen_name, value: JSON.stringify(value)}, function () {
+			alert("メモを更新しました")
+		})
 	}
 	
 	// メモがlocalStorageに保存されていたら読み込む
